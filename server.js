@@ -41,14 +41,22 @@ io.on('connection', (socket) => {
         // sending to all clients except sender  
         console.log('requestMess', requestMess); 
         socket.broadcast.emit('message', requestMess);  
-        }else if(receivedMessage=="AcceptingTheRequest"||receivedMessage=="Disconnect"){
+        }else if(receivedMessage=="AcceptingTheRequest"){
             const acceptMess = {
                 message: receivedMessage,
                 extra: socket.id
             };
-            console.log('AcceptingTheRequest', acceptMess); 
+            console.log(receivedMessage, acceptMess); 
             io.to(receivedExtra).emit('message', acceptMess);
 
+        }else if(receivedMessage=="Disconnect"){
+            const acceptMess = {
+                message: receivedMessage,
+                extra: socket.id
+            };
+            console.log(receivedMessage, acceptMess); 
+            io.to(receivedExtra).emit('message', acceptMess);
+            io.to(socket.id).emit('message', acceptMess);
         }
         
         else{   
