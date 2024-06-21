@@ -55,7 +55,7 @@ io.on('connection', (socket) => {
                 extra: socket.id
             };
             console.log(receivedMessage, acceptMess); 
-            io.to(receivedExtra).emit('message', acceptMess);  socketViewModel.clearMessage()
+            io.to(receivedExtra).emit('message', acceptMess);  
 
         }else if(receivedMessage=="Disconnect"){
             const acceptMess = {
