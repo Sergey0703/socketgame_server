@@ -49,7 +49,17 @@ io.on('connection', (socket) => {
             console.log(receivedMessage, acceptMess); 
             io.to(receivedExtra).emit('message', acceptMess);
 
-        }else if(receivedMessage=="DenyRequest"){
+        }else if(receivedMessage=="CancelRequest"){
+            const acceptMess = {
+                message: receivedMessage,
+                extra: socket.id
+            };
+            console.log(receivedMessage, acceptMess); 
+            io.to(receivedExtra).emit('message', acceptMess);  
+
+        }
+        
+        else if(receivedMessage=="DenyRequest"){
             const acceptMess = {
                 message: receivedMessage,
                 extra: socket.id
