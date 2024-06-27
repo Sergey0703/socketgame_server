@@ -55,8 +55,10 @@ io.on('connection', (socket) => {
                 extra: socket.id
             };
             console.log(receivedMessage, acceptMess); 
-            io.to(receivedExtra).emit('message', acceptMess);  
-
+          //  io.to(receivedExtra).emit('message', acceptMess);  
+          //  io.to(socket.id).emit('message', acceptMess);  
+            // sending to all clients except sender  
+          socket.broadcast.emit('message', acceptMess);  
         }
         
         else if(receivedMessage=="DenyRequest"){
