@@ -50,15 +50,15 @@ io.on('connection', (socket) => {
             io.to(receivedExtra).emit('message', acceptMess);
 
         }else if(receivedMessage=="CancelRequest"){
-            const acceptMess = {
+            const cancelMess = {
                 message: receivedMessage,
                 extra: socket.id
             };
-            console.log(receivedMessage, acceptMess); 
+            console.log(receivedMessage, cancelMess); 
           //  io.to(receivedExtra).emit('message', acceptMess);  
           //  io.to(socket.id).emit('message', acceptMess);  
             // sending to all clients except sender  
-          socket.broadcast.emit('message', acceptMess);  
+           socket.broadcast.emit('message', cancelMess);  
         }
         
         else if(receivedMessage=="DenyRequest"){
@@ -77,6 +77,15 @@ io.on('connection', (socket) => {
             console.log(receivedMessage, acceptMess); 
             io.to(receivedExtra).emit('message', acceptMess);
             io.to(socket.id).emit('message', acceptMess);
+        }else if(receivedMessage=="Spin"){
+            const acceptMess = {
+                message: receivedMessage,
+                extra: receivedExtra
+            };
+            console.log(receivedMessage, acceptMess); 
+         //   io.to(receivedExtra).emit('message', acceptMess);
+            io.emit('message', acceptMess);
+         //socket.broadcast.emit('message', acceptMess);
         }
         
         else{   
