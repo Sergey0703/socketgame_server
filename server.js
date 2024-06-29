@@ -16,8 +16,8 @@ const server = http.createServer(app);
 const io = socketIo(server);
 
 // Define a port to listen on
-const PORT = process.env.PORT;
-
+//const PORT = process.env.PORT;
+const PORT =3000
 // Serve a simple route for testing
 app.get('/', (req, res) => {
     res.send('Socket.IO server is running.');
