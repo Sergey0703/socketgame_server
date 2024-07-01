@@ -17,7 +17,7 @@ const io = socketIo(server);
 
 // Define a port to listen on
 //const PORT = process.env.PORT;
-const PORT =3000
+const PORT = process.env.PORT || 3000;
 // Serve a simple route for testing
 app.get('/', (req, res) => {
     res.send('Socket.IO server is running.');
@@ -106,6 +106,6 @@ io.on('connection', (socket) => {
 });
 
 // Start the server
-server.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+//server.listen(PORT, () => {
+//    console.log(`Server is running on port ${PORT}`);
+//});
